@@ -70,6 +70,25 @@ and the position is (${newX}, ${newY}, ${newZ})`);
  */
 box.position.set(-0.85, -0.75, 0.5);
 
+/**
+ * We can scale the objects on x, y and z axes
+ * and we can also use set function
+ */
+// box.scale.x = 1.5;
+// box.scale.y = 0.5;
+// box.scale.z = 0.5;
+// or can use set function
+box.scale.set(1.5, 0.5, 0.5);
+
+/**
+ * We can rotate any object using it's vector3 around x, y and z axes
+ * and we can also use set function
+ * NOTE: To avoid gimbal lock, apply right order in which we want the rotation
+ */
+box.rotation.reorder('YXZ'); // this should be done before and after we should apply rotation
+box.rotation.y = Math.PI / 4;
+box.rotation.x = Math.PI / 4;
+
 // Renderer
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('canvas.webgl')
