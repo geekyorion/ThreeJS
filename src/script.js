@@ -89,6 +89,41 @@ box.rotation.reorder('YXZ'); // this should be done before and after we should a
 box.rotation.y = Math.PI / 4;
 box.rotation.x = Math.PI / 4;
 
+/**
+ * lookAt(<targeted_object>) method on object to rotate the object in such a way that
+ * its -z axis will rotate towards the targeted object
+ */
+camera.lookAt(box.position);
+// we can create our own vector3
+// camera.lookAt(new THREE.Vector3(0, 1, 1));
+
+/**
+ * we can apply these transformation at once in a complex design using groups
+ */
+const cubes = new THREE.Group();
+const getCubeGeometry = side => new THREE.BoxGeometry(side, side, side);
+const getCubeMaterial = color => new THREE.MeshBasicMaterial({ color });
+const getACube = (side, color) => new THREE.Mesh(getCubeGeometry(side), getCubeMaterial(color));
+const cube1 = getACube(1.5, 0xffff00);
+const cube2 = getACube(1, 0x00ff00);
+const cube3 = getACube(0.5, 0x00ffff);
+// change the position of new cubes and add to the "cubes" group
+cubes.add(cube1);
+cube2.position.x = -2;
+cubes.add(cube2);
+cube3.position.x = 2;
+cubes.add(cube3);
+scene.add(cubes);
+
+// change the cubes rotation
+cubes.rotation.reorder('YXZ');
+cubes.rotation.y = -0.5;
+cubes.rotation.x = -0.5;
+
+// change camera to lookAt cubes group
+camera.position.z = 7
+camera.lookAt(cubes.position);
+
 // Renderer
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('canvas.webgl')
