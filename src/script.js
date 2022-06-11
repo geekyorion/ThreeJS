@@ -4,6 +4,13 @@ import './style.css';
 // Scene
 const scene = new THREE.Scene();
 
+/**
+ * Axes Helper (length of axis as parameter in global unit)
+ * red is +x axis, green is +y axis and blue is +z axis
+ */
+const axesHelper = new THREE.AxesHelper(2);
+scene.add(axesHelper);
+
 // Object
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
@@ -18,6 +25,8 @@ const sizes = {
 
 // Camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height);
+camera.position.x = 0.5;
+camera.position.y = -0.5;
 camera.position.z = 5;
 scene.add(camera);
 
