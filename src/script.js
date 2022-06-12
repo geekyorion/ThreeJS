@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import gsap from 'gsap';
 import './style.css';
 
 // Scene
@@ -54,6 +55,10 @@ const clock = new THREE.Clock();
  */
 let prev_per = performance.now();
 
+// using GSAP
+gsap.to(box1.position, { y: 1, duration: 2, delay: 0.5 });
+gsap.to(box3.position, { y: -1, duration: 2, delay: 0.5 });
+
 // Animation
 const tick = () => {
   // // tradition calculation
@@ -73,6 +78,12 @@ const tick = () => {
   box1.rotation.y += 0.001 * delta_time; // using delta time
   box2.rotation.y = elapsedTime; // using THREE Clock
   box3.rotation.y += 0.001 * delta_per; // using JS Performance
+
+  // // using simple calculation
+  // [box1, box2, box3].forEach((box, index) => {
+  //   box.position.x = Math.cos(elapsedTime) + (index - 1 * 1.5);
+  //   box.position.y = Math.sin(elapsedTime);
+  // });
 
   // render at every frame instead of once
   renderer.render(scene, camera);
