@@ -1,6 +1,10 @@
 {
-    "repository": "#",
-    "license": "UNLICENSED",
+    "repository": "https://github.com/geekyorion/ThreeJS",
+    "license": "MIT",
+    "author": {
+        "name": "Shashank Sharma (geekyorion)",
+        "url": "https://github.com/geekyorion"
+    },
     "scripts": {
         "build": "webpack --config ./bundler/webpack.prod.js",
         "dev": "webpack serve --config ./bundler/webpack.dev.js",
