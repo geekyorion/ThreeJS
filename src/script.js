@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/orbitcontrols';
 import gsap from 'gsap';
 import './style.css';
 
@@ -19,10 +20,15 @@ const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height);
 camera.position.z = 5;
 scene.add(camera);
 
+// DOM element
+const canvas = document.querySelector('canvas.webgl');
+
+// OrbitControls
+const control = new OrbitControls(camera, canvas);
+control.enableDamping = true;
+
 // Renderer
-const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('canvas.webgl')
-});
+const renderer = new THREE.WebGLRenderer({ canvas });
 renderer.setSize(sizes.width, sizes.height);
 
 // ThreeJS clock
@@ -35,6 +41,9 @@ const tick = () => {
 
   // update object
   box.rotation.y = elapsedTime; // using THREE Clock
+
+  // update orbit control
+  control.update();
 
   // render at every frame instead of once
   renderer.render(scene, camera);
