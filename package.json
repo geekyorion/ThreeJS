@@ -1,6 +1,10 @@
 {
-  "repository": "#",
-  "license": "UNLICENSED",
+  "repository": "https://github.com/geekyorion/ThreeJS",
+  "license": "MIT",
+  "author": {
+    "name": "Shashank Sharma (geekyorion)",
+    "url": "https://github.com/geekyorion"
+  },
   "scripts": {
     "deploy": "vercel --prod"
   },
