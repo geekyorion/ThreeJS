@@ -16,4 +16,6 @@ Learning ThreeJS with Bruno Simon and applying some of my own tweaks :P
 
 - __Controls__ ▶️[Live Preview](https://threejs-controls.vercel.app/) 🔗[branch: 06-controls](https://github.com/geekyorion/ThreeJS/tree/06-controls)
 
-- __Animation__ ▶️[Live Preview](https://threejs-resize-fullscreen.vercel.app/) 🔗[branch: 07-fullscreen-and-resize](https://github.com/geekyorion/ThreeJS/tree/07-fullscreen-and-resize)
+- __FullScreen and Resize__ ▶️[Live Preview](https://threejs-resize-fullscreen.vercel.app/) 🔗[branch: 07-fullscreen-and-resize](https://github.com/geekyorion/ThreeJS/tree/07-fullscreen-and-resize)
+
+- __Geometries__ ▶️[Live Preview](https://threejs-geometries.vercel.app/) 🔗[branch: 08-geometries](https://github.com/geekyorion/ThreeJS/tree/08-geometries)
