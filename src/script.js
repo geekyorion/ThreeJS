@@ -1,7 +1,11 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/orbitcontrols';
 import gsap from 'gsap';
+import GUI from 'lil-gui';
 import './style.css';
+
+//Debug UI
+const gui = new GUI();
 
 // Scene
 const scene = new THREE.Scene();
