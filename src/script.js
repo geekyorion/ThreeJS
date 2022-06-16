@@ -15,6 +15,21 @@ scene.add(box);
 // Sizes
 const sizes = { width: 800, height: 600 };
 
+// Resize handling
+window.addEventListener('resize', () => {
+  // udpates sizes
+  sizes.width = window.innerWidth;
+  sizes.height = window.innerHeight;
+
+  // update camera aspect and projection matrix
+  camera.aspect = sizes.width / sizes.height;
+  camera.updateProjectionMatrix();
+
+  // udpate renderer
+  renderer.setSize(sizes.width, sizes.height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+});
+
 // Camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height);
 camera.position.z = 5;
@@ -30,6 +45,7 @@ control.enableDamping = true;
 // Renderer
 const renderer = new THREE.WebGLRenderer({ canvas });
 renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // ThreeJS clock
 const clock = new THREE.Clock();
