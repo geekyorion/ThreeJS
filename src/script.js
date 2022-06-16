@@ -1,10 +1,19 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/orbitcontrols';
-import gsap from 'gsap';
+// import gsap from 'gsap';
 import './style.css';
 
 // Scene
 const scene = new THREE.Scene();
+
+/**
+ * Geometries: A geometry is created using vertices and faces
+ * ThreeJS built-in geometries are inherted from BufferGeometry class
+ * Built-in geometries: BoxGeometry, PlaneGeometry, CircleGeometry, ConeGeometry,
+ *   CylinderGeometry, RingGeometry, TorusGeometry, DodecahedronGeometry
+ *   OctahedronGeometry, TetrahedronGeometry, IcosahedronGeometry, SphereGeometry,
+ *   ShapeGeometry, TubeGeometry, ExtrudeGeometry, LatheGeometry, TextGeometry
+ */
 
 // Objects
 const geometry = new THREE.BoxGeometry(1, 1, 1);
