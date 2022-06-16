@@ -27,6 +27,7 @@ window.addEventListener('resize', () => {
 
   // udpate renderer
   renderer.setSize(sizes.width, sizes.height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
 // Camera
@@ -44,6 +45,7 @@ control.enableDamping = true;
 // Renderer
 const renderer = new THREE.WebGLRenderer({ canvas });
 renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // ThreeJS clock
 const clock = new THREE.Clock();
