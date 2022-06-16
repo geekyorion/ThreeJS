@@ -1,7 +1,24 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/orbitcontrols';
 import gsap from 'gsap';
+import GUI from 'lil-gui';
 import './style.css';
+
+/**
+ * Debug UI: Only works on objects
+ */
+const gui = new GUI();
+
+const debugParameters = {
+  materialColor: 0xff0000, // now we need not to use it as we are using lil-gui instead of dat.gui
+  jump: () => {
+    gsap.to(box.position, { y: box.position.y + 1, direction: 0.5 });
+    gsap.to(box.position, { y: 0, duration: 0.5, delay: 0.5 });
+  },
+  spin: () => {
+    gsap.to(box.rotation, { z: box.rotation.z + Math.PI * 2, duration: 1 });
+  }
+};
 
 // Scene
 const scene = new THREE.Scene();
@@ -11,6 +28,23 @@ const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 const box = new THREE.Mesh(geometry, material);
 scene.add(box);
+
+// Debug
+gui.add(box.position, 'x').name('Cube-X'); // manually enter the number
+gui.add(box.position, 'y', -3, 3, 0.1).name('Cube-Y'); // with 3 more params min, max and step
+gui.add(box.position, 'z').min(-3).max(3).step(0.1).name('Cube-Z'); // also we can use these methods to configure
+gui.add(box, 'visible'); // can auto pick the type of the value that we want to change
+gui.add(material, 'wireframe');
+gui.addColor(material, 'color');
+gui.add(debugParameters, 'jump');
+gui.add(debugParameters, 'spin');
+
+/* Note: In dat.gui, we handle colors differntly. We create an object and assign a color to a key
+const debugColors = { materialColor: 0xff0000 };
+and we use debugColors.materialColor while making the materials and to update the material color
+we use THREE.Color class' method '.set()' in the following way
+gui.addColor(debugColors, 'materialColor').onChange(() => material.color.set(debugColor.materialColor));
+*/
 
 // Sizes
 const sizes = { width: window.innerWidth, height: window.innerHeight };
