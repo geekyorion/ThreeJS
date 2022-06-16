@@ -10,6 +10,12 @@ const gui = new GUI();
 // Scene
 const scene = new THREE.Scene();
 
+// AxesHelper
+const axesHelper = new THREE.AxesHelper(3);
+axesHelper.visible = false;
+scene.add(axesHelper);
+gui.add(axesHelper, 'visible').name('Axes Visiblity');
+
 // Objects
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
