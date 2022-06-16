@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/orbitcontrols';
-import gsap from 'gsap';
+// import gsap from 'gsap';
 import './style.css';
 
 // Scene
@@ -13,7 +13,21 @@ const box = new THREE.Mesh(geometry, material);
 scene.add(box);
 
 // Sizes
-const sizes = { width: 800, height: 600 };
+const sizes = { width: window.innerWidth, height: window.innerHeight };
+
+// Resize handling
+window.addEventListener('resize', () => {
+  // udpates sizes
+  sizes.width = window.innerWidth;
+  sizes.height = window.innerHeight;
+
+  // update camera aspect and projection matrix
+  camera.aspect = sizes.width / sizes.height;
+  camera.updateProjectionMatrix();
+
+  // udpate renderer
+  renderer.setSize(sizes.width, sizes.height);
+});
 
 // Camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height);
