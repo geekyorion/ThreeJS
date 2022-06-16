@@ -33,6 +33,7 @@ scene.add(box);
  * Creating a custom buffer geometry
  * positionArray: a linear typed float32array for vertex position (so 3 vertex means size 9 array)
  * bufferAttributes: ThreeJS uses bufferAttributes for the positions
+ * indeces: some triangles share the same vertex, we can pass this information to GPU, which can increase the performance but harder to organise these vertex
  */
 // method 1: define values separately
 // const positionArray = new Float32Array(9);
@@ -67,6 +68,20 @@ scene.add(triangle);
 // NOTE: ThreeJS uses built-in shaders to render the triangle which are already written
 //       that is why we are using position attribute to set the bufferAttributes
 
+/**
+ * Create multiple triangles
+ */
+const count_limit = 50; // 50 triangles; 50*3 (150) vertex; 50*3*3 (450) points
+const trianglesPositionArray = new Float32Array(count_limit * 3 * 3);
+for (let i = 0; i < count_limit * 3 * 3; i++) {
+  trianglesPositionArray[i] = (Math.random() - 0.5) * 15;
+}
+const trianglesBufferAttributes = new THREE.BufferAttribute(trianglesPositionArray, 3);
+const trianglesGeometry = new THREE.BufferGeometry();
+trianglesGeometry.setAttribute('position', trianglesBufferAttributes);
+const trianglesMaterial = new THREE.MeshBasicMaterial({ color: 0x888800, wireframe: true });
+const trianglesMesh = new THREE.Mesh(trianglesGeometry, trianglesMaterial);
+scene.add(trianglesMesh);
 // Sizes
 const sizes = { width: window.innerWidth, height: window.innerHeight };
 
