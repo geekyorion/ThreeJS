@@ -16,13 +16,20 @@ const scene = new THREE.Scene();
  */
 
 // Objects
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+const geometry = new THREE.BoxGeometry(
+  1, // width
+  1, // height
+  1, // depth
+  3, // widthSegments
+  3, // heightSegments
+  3  // depthSegments
+);
+const material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
 const box = new THREE.Mesh(geometry, material);
 scene.add(box);
 
 // Sizes
-const sizes = { width: 800, height: 600 };
+const sizes = { width: window.innerWidth, height: window.innerHeight };
 
 // Resize handling
 window.addEventListener('resize', () => {
