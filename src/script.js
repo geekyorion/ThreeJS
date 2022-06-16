@@ -26,7 +26,46 @@ const geometry = new THREE.BoxGeometry(
 );
 const material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
 const box = new THREE.Mesh(geometry, material);
+box.position.x = -1.25;
 scene.add(box);
+
+/**
+ * Creating a custom buffer geometry
+ * positionArray: a linear typed float32array for vertex position (so 3 vertex means size 9 array)
+ * bufferAttributes: ThreeJS uses bufferAttributes for the positions
+ */
+// method 1: define values separately
+// const positionArray = new Float32Array(9);
+// // 1st point
+// positionArray[0] = 0;
+// positionArray[1] = 0;
+// positionArray[2] = 0;
+// // 2nd point
+// positionArray[3] = 1;
+// positionArray[4] = 0;
+// positionArray[5] = 0;
+// // 3rd point
+// positionArray[6] = 0;
+// positionArray[7] = 1;
+// positionArray[8] = 0;
+
+// method 2: define values using array
+const positionArray = new Float32Array([
+  0, 0, 0,
+  1, 0, 0,
+  0, 1, 0
+]);
+// covert the positionArray to bufferAttribute (<array>, <vertex_size(x, y, z)>)
+const bufferAttribute = new THREE.BufferAttribute(positionArray, 3);
+// creating a bufferGeometry that we need to setup
+const customTriangleGeometry = new THREE.BufferGeometry();
+// we need to set the position with the generated bufferAttribute
+customTriangleGeometry.setAttribute('position', bufferAttribute);
+// we can use the same material to create the mesh
+const triangle = new THREE.Mesh(customTriangleGeometry, material);
+scene.add(triangle);
+// NOTE: ThreeJS uses built-in shaders to render the triangle which are already written
+//       that is why we are using position attribute to set the bufferAttributes
 
 // Sizes
 const sizes = { width: window.innerWidth, height: window.innerHeight };
