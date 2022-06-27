@@ -7,6 +7,27 @@ import './style.css';
 //Debug UI
 const gui = new GUI();
 
+/**
+ * Texture loading
+ */
+// using JS method
+// const image = new Image();
+// image.src = '/textures/door/color.jpg';
+
+// const texture = new THREE.Texture(image);
+// image.onload = () => {
+//   texture.needsUpdate = true;
+// }
+
+// using texture loader
+const textureLoader = new THREE.TextureLoader();
+const texture = textureLoader.load(
+  '/textures/door/color.jpg',
+  () => { console.log('loaded'); },
+  () => { console.log('progressing'); },
+  () => { console.log('error'); }
+);
+
 // Scene
 const scene = new THREE.Scene();
 
@@ -39,7 +60,7 @@ gui.add(axesHelper, 'visible').name('Axes Visiblity');
 
 // Objects
 const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+const material = new THREE.MeshBasicMaterial({ map: texture });
 const box = new THREE.Mesh(geometry, material);
 scene.add(box);
 
