@@ -16,6 +16,27 @@ axesHelper.visible = false;
 scene.add(axesHelper);
 gui.add(axesHelper, 'visible').name('Axes Visiblity');
 
+/**
+ * Textures: an image which applies the effect on geometries and covers the surface
+ * types of textures:
+ * - color texture (albeda texture): the simplest one, applied on geometry
+ * - alpha texture: visibility (opacity) [white means fully visible and black means transparent]
+ * - displacement texture (height texture): to show the depth effect (to show relief),
+ *   grayscale (white up and black down), needs divisions
+ * - normal texture: add details, no need of subdivisions, vertices doesn't move,
+ *   used to provide the orientation of the light as per the depth (better performance than height texture)
+ * - ambient occlusion texture: grayscale, for fake shadows, not physically correct
+ *   but help to create contrast and other details 
+ * - metalness texture: grayscale, white: metallic and black: non-metallic, for light reflection
+ * - roughness texture: grayscale, white: rough and black: smooth,
+ *   for light dissipation and great duo with metalness textures
+ * 
+ * Textures follow PBR principle: (Physically based rendering)
+ * - mainly for metalness and roughness
+ * - follow the techniques to provide the real life like result
+ * - many softwares are using this principle
+ */
+
 // Objects
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
