@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/orbitcontrols';
-import gsap from 'gsap';
+// import gsap from 'gsap';
 import GUI from 'lil-gui';
 import './style.css';
 
@@ -19,8 +19,15 @@ const gui = new GUI();
 //   texture.needsUpdate = true;
 // }
 
+// add loading manager
+const loadingManager = new THREE.LoadingManager();
+loadingManager.onStart = (url, loaded, total) => console.log(`item to be loaded: ${url} and progress: (${loaded}/${total})`);
+loadingManager.onProgress = (url, loaded, total) => console.log(`currently loaded item: ${url} and progress: (${loaded}/${total})`);
+loadingManager.onLoad = () => console.log('loading finished');
+loadingManager.onError = (url) => console.log(`Error occurred while loading: ${url}`);
+
 // using texture loader
-const textureLoader = new THREE.TextureLoader();
+const textureLoader = new THREE.TextureLoader(loadingManager);
 const texture = textureLoader.load(
   '/textures/door/color.jpg',
   () => { console.log('loaded'); },
