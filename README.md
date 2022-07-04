@@ -21,3 +21,5 @@ Learning ThreeJS with Bruno Simon and applying some of my own tweaks :P
 8. __Geometries__ ▶️[Live Preview](https://threejs-geometries.vercel.app/) 🔗[branch: 08-geometries](https://github.com/geekyorion/ThreeJS/tree/08-geometries)
 
 9. __Debug GUI__ ▶️[Live Preview](https://threejs-debug-ui.vercel.app/) 🔗[branch: 09-debug-ui](https://github.com/geekyorion/ThreeJS/tree/09-debug-ui)
+
+10. __Textures__ ▶️[Live Preview](https://threejs-textures.vercel.app/) 🔗[branch: 10-textures](https://github.com/geekyorion/ThreeJS/tree/10-textures)
