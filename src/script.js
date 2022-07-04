@@ -76,13 +76,13 @@ const roughnessTexture = textureLoader.load('/textures/door/roughness.jpg');
  * minmapping [6 types] and magmapping [2 types]
  * - minmapping is creating a new texture with smaller version until we get 1x1 version
  */
-const checksLargerTexture = textureLoader.load('/textures/checkerboard-1024x1024.png');
-const checksSmallerTexture = textureLoader.load('/textures/checkerboard-8x8.png');
+// const checksLargerTexture = textureLoader.load('/textures/checkerboard-1024x1024.png');
+// const checksSmallerTexture = textureLoader.load('/textures/checkerboard-8x8.png');
 
-checksLargerTexture.minFilter = THREE.NearestFilter; // NearestFilter has the highest performance
-checksSmallerTexture.magFilter = THREE.NearestFilter;
-// NOTE: while using NearestFilter on minFilter we don't need the minmaps
-checksLargerTexture.generateMipmaps = false; // will increase the performance cause it removes extra calculations
+// checksLargerTexture.minFilter = THREE.NearestFilter; // NearestFilter has the highest performance
+// checksSmallerTexture.magFilter = THREE.NearestFilter;
+// // NOTE: while using NearestFilter on minFilter we don't need the minmaps
+// checksLargerTexture.generateMipmaps = false; // will increase the performance cause it removes extra calculations
 
 // Scene
 const scene = new THREE.Scene();
@@ -116,7 +116,7 @@ gui.add(axesHelper, 'visible').name('Axes Visiblity');
 
 // Objects
 const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ map: checksSmallerTexture });
+const material = new THREE.MeshBasicMaterial({ map: colorTexture });
 const box = new THREE.Mesh(geometry, material);
 scene.add(box);
 
