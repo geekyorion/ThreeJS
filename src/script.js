@@ -28,12 +28,49 @@ loadingManager.onError = (url) => console.log(`Error occurred while loading: ${u
 
 // using texture loader
 const textureLoader = new THREE.TextureLoader(loadingManager);
-const texture = textureLoader.load(
-  '/textures/door/color.jpg',
-  () => { console.log('loaded'); },
-  () => { console.log('progressing'); },
-  () => { console.log('error'); }
-);
+// const texture = textureLoader.load(
+//   '/textures/door/color.jpg',
+//   () => { console.log('loaded'); },
+//   () => { console.log('progressing'); },
+//   () => { console.log('error'); }
+// );
+
+// load various textures
+const colorTexture = textureLoader.load('/textures/door/color.jpg');
+const alphaTexture = textureLoader.load('/textures/door/alpha.jpg');
+const heightTexture = textureLoader.load('/textures/door/height.jpg');
+const normalTexture = textureLoader.load('/textures/door/normal.jpg');
+const ambientOcclusionTexture = textureLoader.load('/textures/door/ambientOcclusion.jpg');
+const metalnessTexture = textureLoader.load('/textures/door/metalness.jpg');
+const roughnessTexture = textureLoader.load('/textures/door/roughness.jpg');
+
+/**
+ * UV unwrapping: Texture gets stretched or squeezed to cover the geometry
+ * - these are 2D cordinates
+ * - can be accessed by 'geometryInstance.attributes.uv'
+ */
+
+// repeating a texture (repeat is vetcor2; only x and y)
+// colorTexture.repeat.x = 2;
+// colorTexture.repeat.y = 3;
+// above code will display only 1 colorTexture (in 2x3 grid only 1 grid is displayed, rest is stretched)
+// to overcome this issue we have wrapS and wrapT
+// colorTexture.wrapS = THREE.RepeatWrapping; // for x
+// colorTexture.wrapT = THREE.RepeatWrapping; // for y
+
+// we can also use MirroredRepeatWrapping
+// colorTexture.wrapT = THREE.MirroredRepeatWrapping; // for y
+// colorTexture.wrapS = THREE.MirroredRepeatWrapping; // for x
+
+// we can also provide offset from x and y to the texture
+// colorTexture.offset.x = 0.5;
+// colorTexture.offset.y = 0.5;
+
+// we can rotate the texture [in radians] [it is just a 2D rotation]
+// colorTexture.rotation = Math.PI / 4;
+// we can change the pivot point (0, 0 be default) to center
+// colorTexture.center.x = 0.5;
+// colorTexture.center.y = 0.5;
 
 // Scene
 const scene = new THREE.Scene();
@@ -67,7 +104,7 @@ gui.add(axesHelper, 'visible').name('Axes Visiblity');
 
 // Objects
 const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ map: texture });
+const material = new THREE.MeshBasicMaterial({ map: colorTexture });
 const box = new THREE.Mesh(geometry, material);
 scene.add(box);
 
